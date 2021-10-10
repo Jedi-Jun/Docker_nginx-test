@@ -1,0 +1,28 @@
+# docker build -t node-app .
+# docker run -v %cd%:/app:ro -v /app/node_modules --env-file ./.env
+# -p 3000:4000 -d --name node-app node-app-image
+
+version: "3.0"
+
+services:
+  node-app:
+    build: .
+    ports:
+      - "3001:3001"
+
+    # volumes:
+    #   - ./:/app
+    #   - /app/node_modules
+
+    # environment:
+    #   - PORT=3000
+
+    # env_fille:
+    #   - ./.env
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - .:/data/db
